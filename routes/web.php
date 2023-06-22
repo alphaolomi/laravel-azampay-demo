@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     return view('welcome');
 });
+
+// checkout
+Route::get('/checkout', [CheckoutController::class, 'update'])->name('checkout.show');
+// Route::post('/checkout', 'CheckoutController@update')->name('checkout.update');
