@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use function Pest\Laravel\json;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware(['treblle'])->group(function () {
+
+    // YOUR API ROUTES GO HERE
+    Route::prefix('v1')->group(function () {
+        Route::get('/', function () {
+            return response()->json(['message' => 'Ok']);
+        });
+    });
 });
