@@ -26,6 +26,7 @@ class CheckoutController extends Controller
         ]);
 
         // dd($request->all());
-        dd($data);
+        // dd($data);
+        return response()->json($data);
     }
 }
