@@ -59,7 +59,7 @@
                         <p class="lead">{{$product->description}}</p>
                         <div class="d-flex align-items-center mb-4 gap-2">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button" id="buttonAddToCart">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
@@ -186,6 +186,28 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        {{-- <script src="js/scripts.js"></script> --}}
+
+        <script>
+            const buttonAddToCart = document.getElementById('buttonAddToCart');
+            const inputQuantity = document.getElementById('inputQuantity');
+
+            buttonAddToCart.addEventListener('click', function(){
+                const productId = {{$product->id}};
+                const quantity = inputQuantity.value;
+
+                axios.post('/cart', {
+                    productId,
+                    quantity
+                })
+                .then(function (response) {
+                    console.log(response);
+                    alert('Product added to cart successfully');
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            });
+        </script>
     </body>
 </html>
