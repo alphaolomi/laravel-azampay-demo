@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (Request $request) {
-    return view('welcome');
+    $products = Product::query()
+        ->orderBy('name')
+        ->limit(8)
+        ->get();
+    return view('welcome', [
+        'products' => $products
+    ]);
+});
+
+
+Route::get('/products/{product}', function (Request $request, $product) {
+    $product = Product::query()
+        ->where('slug', $product)
+        ->firstOrFail();
+    return view('product', [
+        'product' => $product
+    ]);
+})->name('products.show');
+
+
+Route::get('/checkout', function (Request $request) {
+    return view('checkout');
 });
 
 // checkout
-Route::get('/checkout', [CheckoutController::class, 'update'])->name('checkout.show');
+// Route::get('/checkout', [CheckoutController::class, 'update'])->name('checkout.show');
 // Route::post('/checkout', 'CheckoutController@update')->name('checkout.update');
+
+
