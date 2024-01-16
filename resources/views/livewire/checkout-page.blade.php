@@ -1,5 +1,20 @@
 <!-- Checkout form-->
 <main class="px-lg-5 container my-5 px-4">
+    @if (session()->has('error_message'))
+      <div class="alert alert-danger">
+        {{ session()->get('error_message') }}
+      </div>
+    @endif
+
+    {{-- @if(count($errors) > 0)
+      <div class="alert alert-danger">
+        <ul class="mb-0">
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif --}}
   <div class="row g-5">
     <div class="col-md-5 col-lg-4 order-md-last">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
