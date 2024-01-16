@@ -1,5 +1,5 @@
 <section class="py-5">
-  <div class="px-lg-5 container my-5 px-4">
+  <div class="container  px-4">
     {{-- <div class="text-center">
       <h1 class="fw-bolder">Order Summary</h1>
       <p class="lead fw-normal text-muted mb-5">Thank you for your order!</p>

@@ -25,6 +25,15 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+
+
+        });
+
+        $this->renderable(function (Throwable $e) {
+            //
+            if ($e instanceof \Illuminate\Validation\ValidationException) {
+                \Illuminate\Support\Facades\Log::info($e->validator->errors());
+            }
         });
     }
 }
