@@ -1,5 +1,7 @@
 # Laravel with Azampay Demo
 
+![Azampay](./public/Screenshot%202024-01-16%20223321.png)
+
 ## Installation
 
 1. Clone the repository
