@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CheckoutController;
+use App\Livewire\{IndexPage,ProductDetail,OrderSummaryPage,CheckoutPage};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CheckoutController;
 
 
 
@@ -17,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (Request $request) {
-    return view('welcome');
-});
-
-// checkout
-Route::get('/checkout', [CheckoutController::class, 'update'])->name('checkout.show');
-// Route::post('/checkout', 'CheckoutController@update')->name('checkout.update');
+Route::get('/', IndexPage::class)->name('index');
+Route::get('/product/{slug}', ProductDetail::class)->name('products.show');
+Route::get('/order-summary/{order}', OrderSummaryPage::class)->name('order-summary.show');
+Route::get('/checkout', CheckoutPage::class)->name('checkout');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
